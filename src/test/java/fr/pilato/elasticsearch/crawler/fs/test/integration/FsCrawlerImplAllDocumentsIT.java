@@ -46,7 +46,6 @@ import static org.hamcrest.Matchers.notNullValue;
 /**
  * Test all type of documents we have
  */
-@Ignore
 public class FsCrawlerImplAllDocumentsIT extends AbstractITCase {
 
     private static FsCrawlerImpl crawler = null;
@@ -92,6 +91,8 @@ public class FsCrawlerImplAllDocumentsIT extends AbstractITCase {
                         .build());
 
         crawler.start();
+
+        staticLogger.warn("elasticsearch client used: {}", elasticsearchClient);
 
         // We wait until we have all docs
         countTestHelper("fscrawler_test_all_documents", null, numFiles.intValue(), null, TimeValue.timeValueMinutes(1));
