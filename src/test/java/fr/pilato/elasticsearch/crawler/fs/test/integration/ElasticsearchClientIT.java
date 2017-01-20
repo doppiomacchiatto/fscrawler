@@ -63,7 +63,6 @@ public class ElasticsearchClientIT extends AbstractITCase {
         assertThat(exists, is(true));
     }
 
-    /**
     @Test
     public void testCreateIndexWithSettings() throws IOException {
         elasticsearchClient.createIndex(getCrawlerName(), false, "{\n" +
@@ -82,6 +81,7 @@ public class ElasticsearchClientIT extends AbstractITCase {
         refresh();
     }
 
+    /**
     @Test
     public void testCreateIndexAlreadyExists() throws IOException {
         elasticsearchClient.createIndex(getCrawlerName());
