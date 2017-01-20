@@ -127,7 +127,6 @@ public abstract class AbstractITCase extends AbstractFSCrawlerTestCase {
         elasticsearchClient.setElasticsearchBehavior();
 
         Response response = elasticsearchClient.getClient().performRequest("GET", "/_nodes/stats/process?filter_path=**.max_file_descriptors");
-
         String maxFileDescriptors = JsonUtil.asMap(response).toString();
         staticLogger.warn("maxFileDescriptors={}", maxFileDescriptors);
     }

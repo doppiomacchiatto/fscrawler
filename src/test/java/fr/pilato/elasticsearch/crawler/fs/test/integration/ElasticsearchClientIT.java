@@ -23,12 +23,14 @@ import fr.pilato.elasticsearch.crawler.fs.client.BulkProcessor;
 import fr.pilato.elasticsearch.crawler.fs.client.BulkRequest;
 import fr.pilato.elasticsearch.crawler.fs.client.BulkResponse;
 import fr.pilato.elasticsearch.crawler.fs.client.IndexRequest;
+import fr.pilato.elasticsearch.crawler.fs.client.JsonUtil;
 import fr.pilato.elasticsearch.crawler.fs.client.SearchResponse;
 import fr.pilato.elasticsearch.crawler.fs.client.VersionComparator;
 import fr.pilato.elasticsearch.crawler.fs.meta.settings.TimeValue;
 import fr.pilato.elasticsearch.crawler.fs.util.FsCrawlerUtil;
 import org.apache.http.entity.StringEntity;
 import org.apache.logging.log4j.LogManager;
+import org.elasticsearch.client.Response;
 import org.junit.Before;
 import org.junit.Test;
 
@@ -51,7 +53,9 @@ public class ElasticsearchClientIT extends AbstractITCase {
 
     @Before
     public void cleanExistingIndex() throws IOException {
-        logger.warn("using elasticsearch client: {}", elasticsearchClient);
+        Response response = elasticsearchClient.getClient().performRequest("GET", "/_nodes/stats/process");
+        String maxFileDescriptors = JsonUtil.asMap(response).toString();
+        logger.warn("maxFileDescriptors={}", maxFileDescriptors);
         logger.info(" -> Removing existing index [{}*]", getCrawlerName());
         elasticsearchClient.deleteIndex(getCrawlerName() + "*");
     }
