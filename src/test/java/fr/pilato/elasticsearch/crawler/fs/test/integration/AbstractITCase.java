@@ -125,6 +125,8 @@ public abstract class AbstractITCase extends AbstractFSCrawlerTestCase {
 
         // We set what will be elasticsearch behavior as it depends on the cluster version
         elasticsearchClient.setElasticsearchBehavior();
+
+        staticLogger.warn("started elasticsearch client: {}", elasticsearchClient);
     }
 
     private static boolean testClusterRunning(boolean withSecurity) throws IOException {

@@ -51,6 +51,7 @@ public class ElasticsearchClientIT extends AbstractITCase {
 
     @Before
     public void cleanExistingIndex() throws IOException {
+        logger.warn("using elasticsearch client: {}", elasticsearchClient);
         logger.info(" -> Removing existing index [{}*]", getCrawlerName());
         elasticsearchClient.deleteIndex(getCrawlerName() + "*");
     }
@@ -62,6 +63,7 @@ public class ElasticsearchClientIT extends AbstractITCase {
         assertThat(exists, is(true));
     }
 
+    /**
     @Test
     public void testCreateIndexWithSettings() throws IOException {
         elasticsearchClient.createIndex(getCrawlerName(), false, "{\n" +
