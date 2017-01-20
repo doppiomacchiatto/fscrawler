@@ -571,22 +571,6 @@
             <scope>test</scope>
         </dependency>
 
-        <!--
-            Just including that to be early downloaded which avoid long traces in Travis
-        -->
-        <dependency>
-            <groupId>ant-contrib</groupId>
-            <artifactId>ant-contrib</artifactId>
-            <version>1.0b3</version>
-            <exclusions>
-                <exclusion>
-                    <groupId>ant</groupId>
-                    <artifactId>ant</artifactId>
-                </exclusion>
-            </exclusions>
-            <scope>test</scope>
-        </dependency>
-
     </dependencies>
 
     <distributionManagement>
