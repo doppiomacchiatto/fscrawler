@@ -81,7 +81,6 @@ public class ElasticsearchClientIT extends AbstractITCase {
         refresh();
     }
 
-    /**
     @Test
     public void testCreateIndexAlreadyExists() throws IOException {
         elasticsearchClient.createIndex(getCrawlerName());
