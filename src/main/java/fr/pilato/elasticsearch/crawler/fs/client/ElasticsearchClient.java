@@ -80,7 +80,18 @@ public class ElasticsearchClient {
                     httpClientBuilder.setDefaultCredentialsProvider(credentialsProvider));
         }
 
+        builder.setFailureListener(new ElasticsearchRestClientFailureListener());
+        builder.setMaxRetryTimeoutMillis(20000);
+
         client = builder.build();
+    }
+
+    static class ElasticsearchRestClientFailureListener extends RestClient.FailureListener {
+        @Override
+        public void onFailure(HttpHost host) {
+            super.onFailure(host);
+            logger.error("We got an error while talking with [{}]", host.toHostString());
+        }
     }
 
     public RestClient getClient() {
