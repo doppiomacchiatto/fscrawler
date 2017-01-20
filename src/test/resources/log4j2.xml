@@ -42,6 +42,9 @@
       <Logger name="org.elasticsearch" level="error" additivity="false">
          <AppenderRef ref="CONSOLE"/>
       </Logger>
+      <Logger name="org.elasticsearch.client.RestClient" level="debug" additivity="false">
+         <AppenderRef ref="CONSOLE"/>
+      </Logger>
       <Logger name="org.glassfish" level="error" additivity="false">
          <AppenderRef ref="CONSOLE"/>
       </Logger>
