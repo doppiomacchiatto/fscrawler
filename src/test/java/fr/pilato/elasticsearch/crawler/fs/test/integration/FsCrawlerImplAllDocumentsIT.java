@@ -30,6 +30,7 @@ import fr.pilato.elasticsearch.crawler.fs.meta.settings.TimeValue;
 import fr.pilato.elasticsearch.crawler.fs.util.FsCrawlerUtil;
 import org.junit.AfterClass;
 import org.junit.BeforeClass;
+import org.junit.Ignore;
 import org.junit.Test;
 
 import java.io.IOException;
@@ -45,6 +46,7 @@ import static org.hamcrest.Matchers.notNullValue;
 /**
  * Test all type of documents we have
  */
+@Ignore
 public class FsCrawlerImplAllDocumentsIT extends AbstractITCase {
 
     private static FsCrawlerImpl crawler = null;
