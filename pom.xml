@@ -51,8 +51,7 @@
         <tests.output>onError</tests.output>
         <tests.verbose>false</tests.verbose>
         <tests.leaveTemporary>false</tests.leaveTemporary>
-        <tests.jvms>2</tests.jvms>
-        <tests.parallelism>auto</tests.parallelism>
+        <tests.parallelism>1</tests.parallelism>
         <tests.seed></tests.seed>
 
         <java.compiler.version>1.8</java.compiler.version>
