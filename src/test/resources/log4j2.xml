@@ -33,7 +33,7 @@
       <Logger name="fr.pilato.elasticsearch.crawler.fs.test" level="error" additivity="false">
          <AppenderRef ref="CONSOLE"/>
       </Logger>
-      <Logger name="fr.pilato.elasticsearch.crawler.fs.test.integration" level="error" additivity="false">
+      <Logger name="fr.pilato.elasticsearch.crawler.fs.test.integration" level="warn" additivity="false">
          <AppenderRef ref="CONSOLE"/>
       </Logger>
       <Logger name="fr.pilato.elasticsearch.crawler.fs.test.unit" level="error" additivity="false">

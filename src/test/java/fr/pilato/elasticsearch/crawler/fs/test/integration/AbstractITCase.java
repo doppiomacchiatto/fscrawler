@@ -126,8 +126,6 @@ public abstract class AbstractITCase extends AbstractFSCrawlerTestCase {
         // We set what will be elasticsearch behavior as it depends on the cluster version
         elasticsearchClient.setElasticsearchBehavior();
 
-        staticLogger.warn("started elasticsearch client: {}", elasticsearchClient);
-
         Response response = elasticsearchClient.getClient().performRequest("GET", "/_nodes/stats/process?filter_path=**.max_file_descriptors");
 
         String maxFileDescriptors = JsonUtil.asMap(response).toString();
