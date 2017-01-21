@@ -54,12 +54,6 @@ public class ElasticsearchClientIT extends AbstractITCase {
 
     @Before
     public void cleanExistingIndex() throws IOException {
-        Response response = elasticsearchClient.getClient().performRequest("GET", "/_nodes/stats?pretty");
-        String nodesStats = prettyMapper.writeValueAsString(JsonUtil.asMap(response));
-        logger.warn("{}", nodesStats);
-        response = elasticsearchClient.getClient().performRequest("GET", "/_nodes?pretty");
-        String nodesInfo = prettyMapper.writeValueAsString(JsonUtil.asMap(response));
-        logger.warn("{}", nodesInfo);
         logger.info(" -> Removing existing index [{}*]", getCrawlerName());
         elasticsearchClient.deleteIndex(getCrawlerName() + "*");
     }

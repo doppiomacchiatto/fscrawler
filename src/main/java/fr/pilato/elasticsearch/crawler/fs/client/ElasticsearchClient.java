@@ -45,6 +45,8 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+import static fr.pilato.elasticsearch.crawler.fs.meta.MetaParser.prettyMapper;
+
 /**
  * Simple Elasticsearch client over HTTP or HTTPS.
  * Only needed methods are exposed.
@@ -80,17 +82,36 @@ public class ElasticsearchClient {
                     httpClientBuilder.setDefaultCredentialsProvider(credentialsProvider));
         }
 
-        builder.setFailureListener(new ElasticsearchRestClientFailureListener());
+        builder.setFailureListener(new ElasticsearchRestClientFailureListener(this));
         builder.setMaxRetryTimeoutMillis(20000);
 
         client = builder.build();
     }
 
     static class ElasticsearchRestClientFailureListener extends RestClient.FailureListener {
+        private ElasticsearchClient elasticsearchClient;
+        ElasticsearchRestClientFailureListener(ElasticsearchClient elasticsearchClient) {
+            this.elasticsearchClient = elasticsearchClient;
+        }
+
         @Override
         public void onFailure(HttpHost host) {
             super.onFailure(host);
             logger.error("We got an error while talking with [{}]", host.toHostString());
+            logger.error("Trying to get stats from elasticsearch [{}]", host.toHostString());
+
+            try {
+                String version = this.elasticsearchClient.findVersion();
+                logger.error("elasticsearch [{}] running version [{}]", host.toHostString(), version);
+                Response response = this.elasticsearchClient.getClient().performRequest("GET", "/_nodes/stats?pretty&human");
+                String nodesStats = prettyMapper.writeValueAsString(JsonUtil.asMap(response));
+                logger.warn("{}", nodesStats);
+                response = this.elasticsearchClient.getClient().performRequest("GET", "/_nodes?pretty&human");
+                String nodesInfo = prettyMapper.writeValueAsString(JsonUtil.asMap(response));
+                logger.warn("{}", nodesInfo);
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
         }
     }
 
