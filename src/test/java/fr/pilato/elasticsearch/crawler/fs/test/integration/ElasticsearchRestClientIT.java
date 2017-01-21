@@ -56,7 +56,10 @@ public class ElasticsearchRestClientIT extends AbstractITCase {
 
     @Test @Repeat(iterations = 100)
     public void testFindVersion() throws IOException {
-        logger.warn("Run #{}", step.incrementAndGet());
-        elasticsearchClient.createIndex("index-" + step.get());
+        String indexName = "index-" + step.incrementAndGet();
+        logger.warn("Creating index [{}]", indexName);
+        elasticsearchClient.createIndex(indexName);
+        logger.warn("Removing index [{}]", indexName);
+        elasticsearchClient.deleteIndex(indexName);
     }
 }
