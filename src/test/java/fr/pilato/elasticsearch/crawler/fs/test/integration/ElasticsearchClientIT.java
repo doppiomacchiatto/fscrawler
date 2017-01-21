@@ -54,7 +54,7 @@ public class ElasticsearchClientIT extends AbstractITCase {
     @Before
     public void cleanExistingIndex() throws IOException {
         Response response = elasticsearchClient.getClient().performRequest("GET", "/_nodes/stats?pretty");
-        String maxFileDescriptors = JsonUtil.asMap(response).toString();
+        String maxFileDescriptors = JsonUtil.serialize(JsonUtil.asMap(response));
         logger.warn("maxFileDescriptors={}", maxFileDescriptors);
         logger.info(" -> Removing existing index [{}*]", getCrawlerName());
         elasticsearchClient.deleteIndex(getCrawlerName() + "*");
