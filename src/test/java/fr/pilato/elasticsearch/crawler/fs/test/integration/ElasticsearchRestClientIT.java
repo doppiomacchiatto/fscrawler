@@ -52,7 +52,20 @@ import static org.junit.Assume.assumeThat;
  */
 public class ElasticsearchRestClientIT extends AbstractITCase {
 
-    private AtomicLong step = new AtomicLong();
+    private static AtomicLong step = new AtomicLong();
+
+    @Before
+    public void cleanExistingIndex() throws IOException {
+        logger.info(" -> Removing existing index [{}*]", getCrawlerName());
+        elasticsearchClient.deleteIndex(getCrawlerName() + "*");
+    }
+
+    @Test @Repeat(iterations = 100)
+    public void testCreateIndex() throws IOException {
+        elasticsearchClient.createIndex(getCrawlerName());
+        boolean exists = elasticsearchClient.isExistingIndex(getCrawlerName());
+        assertThat(exists, is(true));
+    }
 
     @Test @Repeat(iterations = 100)
     public void testFindVersion() throws IOException {
