@@ -261,7 +261,7 @@ public class ElasticsearchClient {
     }
 
     public void shutdown() throws IOException {
-        logger.warn("Closing REST client");
+        logger.warn("Closing REST client {}", this);
         if (client != null) {
             client.close();
             logger.debug("REST client closed");
