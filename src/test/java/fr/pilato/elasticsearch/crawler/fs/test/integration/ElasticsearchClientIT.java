@@ -51,6 +51,7 @@ import static org.junit.Assume.assumeThat;
 /**
  * Test elasticsearch HTTP client
  */
+@Ignore
 public class ElasticsearchClientIT extends AbstractITCase {
 
     @Before
