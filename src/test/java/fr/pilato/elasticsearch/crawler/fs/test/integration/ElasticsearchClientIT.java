@@ -32,6 +32,7 @@ import org.apache.http.entity.StringEntity;
 import org.apache.logging.log4j.LogManager;
 import org.elasticsearch.client.Response;
 import org.junit.Before;
+import org.junit.Ignore;
 import org.junit.Test;
 
 import java.io.IOException;
@@ -50,6 +51,7 @@ import static org.junit.Assume.assumeThat;
 /**
  * Test elasticsearch HTTP client
  */
+@Ignore
 public class ElasticsearchClientIT extends AbstractITCase {
 
     @Before

@@ -46,6 +46,7 @@ import static org.hamcrest.Matchers.notNullValue;
 /**
  * Test all type of documents we have
  */
+@Ignore
 public class FsCrawlerImplAllDocumentsIT extends AbstractITCase {
 
     private static FsCrawlerImpl crawler = null;
