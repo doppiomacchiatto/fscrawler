@@ -78,7 +78,6 @@ import static org.junit.Assume.assumeThat;
 /**
  * Test all crawler settings
  */
-@Ignore
 public class FsCrawlerImplAllParametersIT extends AbstractITCase {
 
     private FsCrawlerImpl crawler = null;
