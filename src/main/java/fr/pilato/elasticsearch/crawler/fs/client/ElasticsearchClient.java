@@ -86,6 +86,9 @@ public class ElasticsearchClient {
         builder.setMaxRetryTimeoutMillis(20000);
 
         client = builder.build();
+
+        logger.error("Creating the client [{}]", this);
+        Thread.dumpStack();
     }
 
     static class ElasticsearchRestClientFailureListener extends RestClient.FailureListener {
@@ -98,6 +101,7 @@ public class ElasticsearchClient {
         public void onFailure(HttpHost host) {
             super.onFailure(host);
             logger.error("We got an error while talking with [{}]", host.toHostString());
+            Thread.dumpStack();
         }
     }
 
