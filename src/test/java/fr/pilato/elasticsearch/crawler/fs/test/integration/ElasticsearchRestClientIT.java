@@ -57,7 +57,6 @@ public class ElasticsearchRestClientIT extends AbstractITCase {
     @Test @Repeat(iterations = 100)
     public void testFindVersion() throws IOException {
         logger.warn("Run #{}", step.incrementAndGet());
-        String version = elasticsearchClient.findVersion();
-        logger.warn("Current elasticsearch version: [{}]", version);
+        elasticsearchClient.createIndex("index-" + step.get());
     }
 }
